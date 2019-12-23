@@ -16,12 +16,8 @@ const BlockSize = 32
 
 // digest represents the partial evaluation of a checksum.
 type digest struct {
-	// xxhash hash.Hash
-	// xxhash2 hash.Hash
 	xxhash *xxhash.XXHash64
 	xxhash2 *xxhash.XXHash64
-	// xxhash *xxhash.XXHash64
-	// xxhash2 *xxhash.XXHash64
 	start    int
 	end      int
 }
@@ -69,15 +65,13 @@ func New(params ...int) hash.Hash {
 func (d *digest) Sum(in []byte) []byte {
 	// Make a copy of d so that caller can keep writing and summing.
 
-	//////////s1 := append(d.xxhash.Sum(in))
-	// s2 := append(d.xxhash2.Sum(in))
-	// s1 = append(s1, s2...)
-	s1 := append(d.xxhash.Sum(in), d.xxhash2.Sum(in)...)
+	//////////// s1 := append(d.xxhash.Sum(in), d.xxhash2.Sum(in)...)
 
 	// fmt.Println("test ", s1, s2)
 	// fmt.Println("test ", d.xxhash.Sum(in), d.xxhash2.Sum(in))
 
-	return s1
+	// return s1
+	return append(d.xxhash.Sum(in), d.xxhash2.Sum(in)...)
 
 	// return sl[d.start:d.end]
 }
