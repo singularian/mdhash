@@ -10,8 +10,8 @@ _	"errors"
 // The size of a xxhash checksum in bytes.
 const Size = 16
 
-// The blocksize of SHA-1 in bytes.
-const BlockSize = 32 
+// The blocksize of xxhash in bytes.
+const BlockSize =  32
 
 
 // digest represents the partial evaluation of a checksum.
@@ -40,9 +40,7 @@ func (d *digest) Write(p []byte) (nn int, err error) {
 
 }
 
-// New returns a new hash.Hash computing the SHA1 checksum. The Hash also
-// implements encoding.BinaryMarshaler and encoding.BinaryUnmarshaler to
-// marshal and unmarshal the internal state of the hash.
+// New returns a new xxhash with two hash signature with different keys
 func New(params ...int) hash.Hash {
 	d := new(digest)
 	h  := xxhash.NewS64(991209123091283)
@@ -65,14 +63,7 @@ func New(params ...int) hash.Hash {
 func (d *digest) Sum(in []byte) []byte {
 	// Make a copy of d so that caller can keep writing and summing.
 
-	//////////// s1 := append(d.xxhash.Sum(in), d.xxhash2.Sum(in)...)
-
-	// fmt.Println("test ", s1, s2)
-	// fmt.Println("test ", d.xxhash.Sum(in), d.xxhash2.Sum(in))
-
-	// return s1
 	return append(d.xxhash.Sum(in), d.xxhash2.Sum(in)...)
 
-	// return sl[d.start:d.end]
 }
 
