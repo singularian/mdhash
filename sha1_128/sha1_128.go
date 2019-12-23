@@ -63,7 +63,7 @@ func New(params ...int) hash.Hash {
 
 func (d *digest) Sum(in []byte) []byte {
 	// Make a copy of d so that caller can keep writing and summing.
-	sl := d.sha1hash.Sum(nil)
+	sl := d.sha1hash.Sum(in)
 
 	return sl[d.start:d.end]
 }
