@@ -10,6 +10,7 @@ import (
 	"github.com/martinlindhe/gogost/gost34112012256"
 //	"github.com/aead/poly1305"
 	"golang.org/x/crypto/poly1305"
+// 	"reflect"
 //	"github.com/skeeto/chacha-go"
 )
 
@@ -33,10 +34,18 @@ func main() {
 	fmt.Printf("fnv128a hex %x %d\n", fnx.Sum(nil),  len(fnx.Sum(nil)))
 
 
-	xx := xxhash.New64()
+	//xx := xxhash.New64()
+	xx := xxhash.NewS64(9910222332120011)
 	// xx := xxhash.New()
 	xx.Write(a)
 	fmt.Printf("xxhash hex %x %d\n", xx.Sum(nil),  len(xx.Sum(nil)))
+
+	xx2 := xxhash.NewS64(991022200120011)
+	xx2.Write(a)
+        fmt.Printf("xxhash hex %x %d\n", xx2.Sum(nil),  len(xx2.Sum(nil)))
+
+	// writerType := reflect.TypeOf((xx)(nil)).Elem()
+	// fmt.Println("type ", writerType)
 
 	gost := gost34112012256.New()
 	gost.Write(a)
