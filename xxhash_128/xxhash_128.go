@@ -41,22 +41,24 @@ func (d *digest) Write(p []byte) (nn int, err error) {
 }
 
 // New returns a new xxhash with two hash signature with different keys
-func New(params ...int) hash.Hash {
-	d := new(digest)
-	h  := xxhash.NewS64(991209123091283)
-	d.xxhash = h
-
-	h2  := xxhash.NewS64(9881223091283)
-	d.xxhash2 = h2
-
-/*	d.start = 0
-	d.end   = 16
+func New(params ...uint64) hash.Hash {
+	var seed uint64  = 991209123091283
+	var seed2 uint64 = 9881223091283
 
 	if (len(params) == 2) {
-		d.start = params[0]
-		d.end   = params[1]
+		seed  = params[0]
+		seed2 = params[1]
 	}
-*/
+
+
+	d := new(digest)
+	// h  := xxhash.NewS64(991209123091283)
+	h  := xxhash.NewS64(seed)
+	d.xxhash = h
+
+	h2  := xxhash.NewS64(seed2)
+	d.xxhash2 = h2
+
 	return d
 }
 
