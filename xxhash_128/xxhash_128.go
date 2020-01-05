@@ -52,7 +52,6 @@ func New(params ...uint64) hash.Hash {
 
 
 	d := new(digest)
-	// h  := xxhash.NewS64(991209123091283)
 	h  := xxhash.NewS64(seed)
 	d.xxhash = h
 
