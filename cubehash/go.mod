@@ -1,3 +1,3 @@
-module nullprogram.com/x/cubehash
+module github.com/mdhash/cubehash
 
 go 1.13
