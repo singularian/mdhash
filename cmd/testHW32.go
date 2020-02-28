@@ -23,7 +23,7 @@ func main() {
 	teststring := "test hw32"
 	hw32.Reset()
 	io.WriteString(hw32, teststring)
-	fmt.Printf("hw32 hex %x\n", hw32.Sum(nil))
+	fmt.Printf("hw32 hex %x %d\n", hw32.Sum(nil), len(hw32.Sum(nil)))
 
 }
 
