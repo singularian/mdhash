@@ -20,6 +20,7 @@ all:
 	go build -o testXXhash128 testXXhash128.go 
 clean:
 	rm -r testSHA1-128 testXXhash128 testpoly1305 testCubehash testHW32 testFarmHash
+
 # Display general help about this command
 help:
 	@echo "$(PROJECT) Makefile."
