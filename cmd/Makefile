@@ -13,6 +13,7 @@ CMD=cmd
 
 
 all:
+	go build -o testCubehash testCubehash.go
 	go build -o testHW32 testHW32.go
 	go build -o testSHA1-128 testSHA1-128.go
 	go build -o testpoly1305 testpoly1305.go 
