@@ -16,7 +16,6 @@ const BlockSize = 4
 
 // digest represents the partial evaluation of a checksum.
 type digest struct {
-	// hw64 hash.Hash
 	key []byte
 	start    int
 	end      int
