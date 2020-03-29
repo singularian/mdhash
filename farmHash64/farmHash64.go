@@ -41,7 +41,7 @@ func (d *digest) Write(p []byte) (nn int, err error) {
 
 }
 
-// New returns a new hash.Hash computing the farm hash 32 checksum. 
+// New returns a new hash.Hash computing the farm hash 64 checksum. 
 func New(start int, end int, seed uint64) hash.Hash {
 	d := new(digest)
 
