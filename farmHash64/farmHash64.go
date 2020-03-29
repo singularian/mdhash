@@ -1,24 +1,24 @@
-// This is the djb2 hash 
-// 
-
-package djb2
+// This is a farm Hash 64 
+package farmHash64
 
 import (
 	"hash"
 	"encoding/binary"
+	"github.com/leemcloughlin/gofarmhash"
 _	"errors"
 )
 
-// The size of a djb2 checksum in bytes.
-const Size = 8
+// The size of a farmhash 64 checksum in bytes.
+const Size = 8 
 
 // The blocksize of farm hash in bytes.
-const BlockSize = 8
+const BlockSize = 8 
 
 // digest represents the partial evaluation of a checksum.
 type digest struct {
 	start    int
 	end      int
+	seed  uint64
 	hash  uint64
 	hashBytes []byte
 }
@@ -27,27 +27,27 @@ func init() {
 }
 
 func (d *digest) Reset() {
-	d.hashBytes = d.hashBytes[:]
 }
 
 func (d *digest) Size() int { return Size }
 func (d *digest) BlockSize() int { return BlockSize }
 
-// Write the bytes array and comput the djb2 hash
+// compute the hash
 func (d *digest) Write(p []byte) (nn int, err error) {
 
-	d.hash = d.djb2(p)
+	d.hash = farmhash.Hash64WithSeed(p, d.seed)
 	binary.BigEndian.PutUint64(d.hashBytes, d.hash)
 	return
 
 }
 
 // New returns a new hash.Hash computing the farm hash 32 checksum. 
-func New(start int, end int) hash.Hash {
+func New(start int, end int, seed uint64) hash.Hash {
 	d := new(digest)
 
 	r := make([]byte, 8)
 	d.hashBytes = r
+	d.seed = seed
 
 	d.start = start 
 	d.end   = end
@@ -56,23 +56,9 @@ func New(start int, end int) hash.Hash {
 	return d
 }
 
-// return the dbj2 sum
+// return the sum
 func (d *digest) Sum(in []byte) []byte {
 
 	return d.hashBytes[d.start:d.end]
-}
-
-// compute the djb2 of a byte array
-func (d *digest) djb2(s []byte) uint64 {
-        var hash uint64 = 5381
-
-        for _, c := range s {
-                hash = ((hash << 5) + hash) + uint64(c)
-                // the above line is an optimized version of the following line:
-                // hash = hash * 33 + int64(c)
-                // which is easier to read and understand...
-        }
-
-        return hash
 }
 

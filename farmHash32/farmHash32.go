@@ -1,14 +1,14 @@
 // This is a farm Hash 32 
-// this is an example of a write your own signature to add to mdencode
 package farmHash32
 
 import (
 	"hash"
+	"encoding/binary"
 	"github.com/leemcloughlin/gofarmhash"
 _	"errors"
 )
 
-// The size of a SHA-1 checksum in bytes.
+// The size of a farm hash 32 checksum in bytes.
 const Size = 4
 
 // The blocksize of farm hash in bytes.
@@ -35,9 +35,7 @@ func (d *digest) BlockSize() int { return BlockSize }
 func (d *digest) Write(p []byte) (nn int, err error) {
 
 	d.hash32 = farmhash.Hash32(p)
-	for i := uint32(0); i < 4; i++ {
-		d.hashBytes[i] = byte((d.hash32 >> (8 * i)) & 0xff)
-	}
+	binary.BigEndian.PutUint32(d.hashBytes, d.hash32)
 	return
 
 }
@@ -56,6 +54,7 @@ func New(start int, end int, key []byte) hash.Hash {
 	return d
 }
 
+// return the sum
 func (d *digest) Sum(in []byte) []byte {
 
 	return d.hashBytes[d.start:d.end]

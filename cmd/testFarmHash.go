@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/leemcloughlin/gofarmhash"
 	"github.com/singularian/mdhash/farmHash32"
+	"github.com/singularian/mdhash/farmHash64"
 )
 
 func main() {
@@ -19,7 +20,13 @@ func main() {
 	fmt.Printf("fh32 hex %x\n", fh32.Sum(nil))
 
 	hash := farmhash.Hash32(bytes)
-	fmt.Printf("Hash32(%s) is %x\n", str, hash)
+	fmt.Printf("Hash32 (%s) is %x\n", str, hash)
 
+	fh64 := farmHash64.New(0, 8, 234324324)
+	fh64.Write(bytes)
+	fmt.Printf("Hash64 (%s) is %x %d\n", str, fh64.Sum(nil), len(fh64.Sum(nil)))
+
+	hash64 := farmhash.Hash64WithSeed(bytes, 234324324)
+	fmt.Printf("Hash64 (%s) is %x\n", str, hash64)
 }
 
