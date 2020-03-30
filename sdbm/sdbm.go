@@ -1,8 +1,7 @@
-// This is the djb2 hash 
-// http://www.cse.yorku.ca/~oz/hash.html
+// This is the sdbm hash 
 // 
 
-package djb2
+package sdbm
 
 import (
 	"hash"
@@ -10,7 +9,7 @@ import (
 _	"errors"
 )
 
-// The size of a djb2 checksum in bytes.
+// The size of a sdbm checksum in bytes.
 const Size = 8
 
 // The blocksize of farm hash in bytes.
@@ -34,16 +33,16 @@ func (d *digest) Reset() {
 func (d *digest) Size() int { return Size }
 func (d *digest) BlockSize() int { return BlockSize }
 
-// Write the bytes array and comput the djb2 hash
+// Write the bytes array and comput the sdbm hash
 func (d *digest) Write(p []byte) (nn int, err error) {
 
-	d.hash = d.djb2(p)
+	d.hash = d.sdbm(p)
 	binary.BigEndian.PutUint64(d.hashBytes, d.hash)
 	return
 
 }
 
-// New returns a new hash.Hash computing the djb2 checksum. 
+// New returns a new hash.Hash computing the sdbm checksum. 
 func New(start int, end int) hash.Hash {
 	d := new(digest)
 
@@ -57,21 +56,18 @@ func New(start int, end int) hash.Hash {
 	return d
 }
 
-// return the dbj2 sum
+// return the sdbm sum
 func (d *digest) Sum(in []byte) []byte {
 
 	return d.hashBytes[d.start:d.end]
 }
 
-// compute the djb2 of a byte array
-func (d *digest) djb2(s []byte) uint64 {
-        var hash uint64 = 5381
+// compute the sdbm of a byte array
+func (d *digest) sdbm(s []byte) uint64 {
+        var hash uint64 = 0 
 
         for _, c := range s {
-                hash = ((hash << 5) + hash) + uint64(c)
-                // the above line is an optimized version of the following line:
-                // hash = hash * 33 + int64(c)
-                // which is easier to read and understand...
+                hash = uint64(c) + (hash << 6) + (hash << 16) - hash
         }
 
         return hash

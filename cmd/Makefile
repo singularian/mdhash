@@ -20,8 +20,9 @@ all:
 	go build -o testFarmHash testFarmHash.go 
 	go build -o testXXhash128 testXXhash128.go 
 	go build -o testdjb2 testDJB2.go 
+	go build -o testsdbm testSDBM.go 
 clean:
-	rm -r testSHA1-128 testXXhash128 testpoly1305 testCubehash testHW32 testFarmHash testdjb2
+	rm -r testSHA1-128 testXXhash128 testpoly1305 testCubehash testHW32 testFarmHash testdjb2 testsdbm
 
 # Display general help about this command
 help:

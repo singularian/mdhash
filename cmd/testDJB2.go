@@ -19,7 +19,7 @@ func main() {
 	fmt.Printf("djb2 hex %s %x\n", str, djb2o.Sum(nil))
 
 	hash := djb2l(bytes)
-	fmt.Printf("Hash32(%s) is %x %d\n", str, hash, hash)
+	fmt.Printf("djb2 Hash (%s) is %x uint64 %d\n", str, hash, hash)
 
 }
 
