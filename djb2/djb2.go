@@ -13,7 +13,7 @@ _	"errors"
 // The size of a djb2 checksum in bytes.
 const Size = 8
 
-// The blocksize of farm hash in bytes.
+// The blocksize of djb2 in bytes.
 const BlockSize = 8
 
 // digest represents the partial evaluation of a checksum.
