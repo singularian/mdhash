@@ -16,9 +16,10 @@ const BlockSize = 4
 
 // digest represents the partial evaluation of a checksum.
 type digest struct {
-	key []byte
 	start    int
 	end      int
+
+	seed uint32
 	hash32 uint32
 	hashBytes []byte
 }
@@ -41,7 +42,7 @@ func (d *digest) Write(p []byte) (nn int, err error) {
 }
 
 // New returns a new hash.Hash computing the farm hash 32 checksum. 
-func New(start int, end int, key []byte) hash.Hash {
+func New(start int, end int) hash.Hash {
 	d := new(digest)
 
 	r := make([]byte, 4)
