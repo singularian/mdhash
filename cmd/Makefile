@@ -14,15 +14,16 @@ CMD=cmd
 
 all:
 	go build -o testCubehash testCubehash.go
-	go build -o testHW32 testHW32.go
-	go build -o testSHA1-128 testSHA1-128.go
-	go build -o testpoly1305 testpoly1305.go 
-	go build -o testFarmHash testFarmHash.go 
-	go build -o testXXhash128 testXXhash128.go 
 	go build -o testdjb2 testDJB2.go 
+	go build -o testFarmHash testFarmHash.go
+	go build -o testJenkinsHash testJenkinsHash.go
+	go build -o testHW32 testHW32.go
+	go build -o testpoly1305 testpoly1305.go
 	go build -o testsdbm testSDBM.go 
+	go build -o testSHA1-128 testSHA1-128.go
+	go build -o testXXhash128 testXXhash128.go
 clean:
-	rm -r testSHA1-128 testXXhash128 testpoly1305 testCubehash testHW32 testFarmHash testdjb2 testsdbm
+	rm -r testCubehash testdjb2 testHW32 testFarmHash testJenkinsHash testpoly1305 testsdbm testSHA1-128 testXXhash128
 
 # Display general help about this command
 help:
