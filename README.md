@@ -13,6 +13,8 @@ djb2
 farmhash32
 farmhash64
 hw32
+jenkins32
+jenkins64
 poly1305
 sdbm
 sha1_128
