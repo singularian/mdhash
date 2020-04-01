@@ -13,6 +13,7 @@ CMD=cmd
 
 
 all:
+	go build -o testCityHash testCityHash.go
 	go build -o testCubehash testCubehash.go
 	go build -o testdjb2 testDJB2.go 
 	go build -o testFarmHash testFarmHash.go
@@ -25,7 +26,7 @@ all:
 	go build -o testspooky testSpookyHash.go
 	go build -o testXXhash128 testXXhash128.go
 clean:
-	rm -r testCubehash testdjb2 testHW32 testFarmHash testJenkinsHash testMurmur332 testpoly1305 testsdbm testSHA1-128 testspooky testXXhash128
+	rm -r testCityHash testCubehash testdjb2 testHW32 testFarmHash testJenkinsHash testMurmur332 testpoly1305 testsdbm testSHA1-128 testspooky testXXhash128
 
 # Display general help about this command
 help:
