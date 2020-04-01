@@ -8,16 +8,20 @@ http://github.com/singularian/mdencode/
 This is the current hash list
 
 ```
+Cityhash 64
 Cubehash
 djb2
-farmhash32
-farmhash64
+farmhash 32
+farmhash 64
 hw32
-jenkins32
-jenkins64
+mumur3 32
+jenkins 32
+jenkins 64
 poly1305
 sdbm
 sha1_128
+spooky 32
+spooky 64
 xxhash_128
 ```
 
