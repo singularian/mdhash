@@ -19,6 +19,8 @@ all:
 	go build -o testFarmHash testFarmHash.go
 	go build -o testJenkinsHash testJenkinsHash.go
 	go build -o testHW32 testHW32.go
+	go build -o testMarvin32 testMarvin32.go 
+	go build -o testMetroHash testMetroHash.go 
 	go build -o testMurmur332 testMurmur332.go 
 	go build -o testpoly1305 testpoly1305.go
 	go build -o testsdbm testSDBM.go 
@@ -27,7 +29,7 @@ all:
 	go build -o testultra testUltraLargeHash.go 
 	go build -o testXXhash128 testXXhash128.go
 clean:
-	rm -r testCityHash testCubehash testdjb2 testHW32 testFarmHash testJenkinsHash testMurmur332 testpoly1305 testsdbm testSHA1-128 testspooky testultra testXXhash128
+	rm -r testCityHash testCubehash testdjb2 testHW32 testFarmHash testJenkinsHash testMarvin32 testMetroHash testMurmur332 testpoly1305 testsdbm testSHA1-128 testspooky testultra testXXhash128
 
 # Display general help about this command
 help:
