@@ -11,18 +11,21 @@ This is the current hash list
 Cityhash 64
 Cubehash
 djb2
-farmhash 32
-farmhash 64
-hw32
-mumur3 32
-jenkins 32
-jenkins 64
-poly1305
-sdbm
-sha1_128
-spooky 32
-spooky 64
-xxhash_128
+Farmhash 32
+Farmhash 64
+Highway Hash 32
+Marvin 32
+Metro hash 64
+Mumur3 32
+Jenkins 32
+Jenkins 64
+Poly1305
+Sdbm
+Sha1_128
+Spooky 32
+Spooky 64
+XXhash_128
+Ultra Large Hash
 ```
 
 ## DJB2 and SDBM
